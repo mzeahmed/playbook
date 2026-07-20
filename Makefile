@@ -85,12 +85,12 @@ migrate-create: ## Create migrations | make migrate-create t="table_name"
 
 migrate-up: ## Apply migrations
 	@echo "$(GREEN)Database migrations up ... $(RESET)";
-	goose up
+	goose -dir backend/internal/database/migrations postgres "user=$(DB_USER) password=$(DB_PASSWORD) host=$(DB_HOST) port=$(DB_PORT) dbname=$(DB_NAME) sslmode=disable" up
 	@echo "$(GREEN)Database migrations finished! $(RESET)";
 
 migrate-down: ## Roll back the last migration
 	@echo "$(GREEN)Rollback last database migration ... $(RESET)";
-	goose down
+	goose -dir backend/internal/database/migrations postgres "user=$(DB_USER) password=$(DB_PASSWORD) host=$(DB_HOST) port=$(DB_PORT) dbname=$(DB_NAME) sslmode=disable" down
 	@echo "$(GREEN)Rollback done! $(RESET)";
 
 sqlc: ## Regenerate Go code from SQL queries
