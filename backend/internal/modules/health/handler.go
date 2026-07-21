@@ -1,6 +1,10 @@
 package health
 
-import "net/http"
+import (
+	"net/http"
+
+	"github.com/mzeahmed/playbook/internal/response"
+)
 
 // Handler handles all HTTP requests related to the health module.
 type Handler struct{}
@@ -12,6 +16,5 @@ func NewHandler() *Handler {
 
 // Health handles GET /health.
 func (h *Handler) Health(w http.ResponseWriter, _ *http.Request) {
-	w.WriteHeader(http.StatusOK)
-	_, _ = w.Write([]byte("OK"))
+	response.JSON(w, http.StatusOK, "OK", nil)
 }

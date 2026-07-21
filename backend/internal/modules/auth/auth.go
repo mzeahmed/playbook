@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/mzeahmed/coelakit/response"
+	"github.com/mzeahmed/playbook/internal/response"
 )
 
 const bearerPrefix = "Bearer "

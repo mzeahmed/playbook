@@ -6,13 +6,12 @@ import (
 	"os"
 	"time"
 
-	"github.com/mzeahmed/coelakit/middleware"
-	"github.com/mzeahmed/coelakit/server"
-
 	"github.com/mzeahmed/playbook/internal/config"
 	"github.com/mzeahmed/playbook/internal/database"
 	"github.com/mzeahmed/playbook/internal/logger"
+	"github.com/mzeahmed/playbook/internal/middleware"
 	"github.com/mzeahmed/playbook/internal/router"
+	"github.com/mzeahmed/playbook/internal/server"
 )
 
 func main() {

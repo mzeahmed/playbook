@@ -7,8 +7,7 @@ import (
 	"net/http"
 
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/mzeahmed/coelakit/module"
-
+	"github.com/mzeahmed/playbook/internal/middleware"
 	"github.com/mzeahmed/playbook/internal/modules/health"
 )
 
@@ -19,17 +18,13 @@ import (
 // access or JWT validation (auth, incident, ...) can be registered here as
 // they're implemented, e.g.:
 //
-//	module.RegisterAll(mux,
-//	    health.New(),
-//	    auth.New(pool, jwtSecret),
-//	)
+//	health.New().RegisterRoutes(mux)
+//	auth.New(pool, jwtSecret).RegisterRoutes(mux)
 func New(pool *pgxpool.Pool, jwtSecret string, log *slog.Logger) http.Handler {
 	mux := http.NewServeMux()
 	//authenticate := auth.Authenticate(jwtSecret)
 
-	module.RegisterAll(mux,
-		health.New(),
-	)
+	health.New().RegisterRoutes(mux)
 
-	return mux
+	return middleware.NotFound(mux)
 }
