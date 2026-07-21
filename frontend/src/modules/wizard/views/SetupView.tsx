@@ -1,8 +1,8 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import {useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 
-import { ApiError } from '@/http/client'
-import { completeSetup, type AdminInput, type InstanceInput } from '../api'
+import {ApiError} from '@/http/client'
+import {completeSetup, type AdminInput, type InstanceInput} from '../api'
 import {type AdminErrors, type InstanceErrors, validateAdmin, validateInstance} from "@/modules/wizard/validators.ts";
 import WizardStepper from "@/modules/wizard/components/WizardStepper.tsx";
 import StepWelcome from "@/modules/wizard/components/StepWelcome.tsx";
@@ -12,7 +12,7 @@ import StepFinish from "@/modules/wizard/components/StepFinish.tsx";
 
 const steps = ['Welcome', 'Administrator', 'Instance', 'Finish']
 
-export default function SetupView() {
+export default function SetupView () {
   const [currentStep, setCurrentStep] = useState(1)
 
   const [admin, setAdmin] = useState<AdminInput>({
@@ -36,15 +36,15 @@ export default function SetupView() {
 
   const navigate = useNavigate()
 
-  function updateAdmin(patch: Partial<AdminInput>) {
-    setAdmin((prev) => ({ ...prev, ...patch }))
+  function updateAdmin (patch: Partial<AdminInput>) {
+    setAdmin((prev) => ({...prev, ...patch}))
   }
 
-  function updateInstance(patch: Partial<InstanceInput>) {
-    setInstance((prev) => ({ ...prev, ...patch }))
+  function updateInstance (patch: Partial<InstanceInput>) {
+    setInstance((prev) => ({...prev, ...patch}))
   }
 
-  function next() {
+  function next () {
     if (currentStep === 2) {
       const errors = validateAdmin(admin, confirmPassword)
       setAdminErrors(errors)
@@ -60,12 +60,12 @@ export default function SetupView() {
     setCurrentStep((step) => step + 1)
   }
 
-  function back() {
+  function back () {
     setSubmitError('')
     setCurrentStep((step) => step - 1)
   }
 
-  async function finish() {
+  async function finish () {
     setSubmitting(true)
     setSubmitError('')
 
@@ -110,7 +110,7 @@ export default function SetupView() {
             <button
               type="button"
               className="btn btn-sm pb-surface border"
-              style={{ color: 'var(--pb-text-muted)' }}
+              style={{color: 'var(--pb-text-muted)'}}
               disabled={submitting}
               onClick={back}
             >

@@ -1,21 +1,23 @@
 /*
  * Playbook design system.
  *
- * Ported from docs/playbook-overview.html — the dark theme is the only
- * supported theme (data-bs-theme="dark" is fixed in index.html), overriding
- * Bootstrap 5.3's CSS variables so plain Bootstrap classes (.btn-primary,
- * .form-control, ...) already match the design without extra utility
- * classes.
+ * Light-first (docs-platform feel, closer to GitHub/Notion/GitBook than a
+ * dark ops dashboard). Light is the only supported theme (data-bs-theme
+ * "light" is fixed in index.html), overriding Bootstrap 5.3's CSS variables
+ * so plain Bootstrap classes (.btn-primary, .form-control, ...) already
+ * match the design without extra utility classes.
  */
 
 :root,
-[data-bs-theme='dark'] {
-  --pb-bg: #0f172a;
-  --pb-surface: #1e293b;
-  --pb-surface-hover: #263348;
-  --pb-border: #334155;
-  --pb-text: #f8fafc;
-  --pb-text-muted: #94a3b8;
+[data-bs-theme='light'] {
+  color-scheme: light;
+
+  --pb-bg: #f8fafc;
+  --pb-surface: #ffffff;
+  --pb-surface-hover: #f1f5f9;
+  --pb-border: #e2e8f0;
+  --pb-text: #0f172a;
+  --pb-text-muted: #64748b;
   --pb-primary: #2563eb;
   --pb-success: #22c55e;
   --pb-warning: #f59e0b;
@@ -32,7 +34,7 @@
   --bs-warning: var(--pb-warning);
   --bs-danger: var(--pb-danger);
   --bs-link-color: var(--pb-primary);
-  --bs-link-hover-color: #60a5fa;
+  --bs-link-hover-color: #1d4ed8;
 }
 
 body {
@@ -58,7 +60,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  background: #cbd5e1;
 }
 
 .pb-surface {
@@ -67,6 +69,7 @@ body {
 
 .pb-card {
   background-color: var(--pb-surface);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
   transition: all 0.2s ease;
 }
 
