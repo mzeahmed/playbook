@@ -9,6 +9,7 @@ import (
 )
 
 type Querier interface {
+	CountIncidents(ctx context.Context, arg CountIncidentsParams) (int64, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
 	CreateWizard(ctx context.Context, arg CreateWizardParams) (Wizard, error)
 	DeleteWizard(ctx context.Context) error
@@ -16,6 +17,7 @@ type Querier interface {
 	FindUserById(ctx context.Context, id int64) (User, error)
 	GetWizard(ctx context.Context) (Wizard, error)
 	HasUser(ctx context.Context) (bool, error)
+	ListIncidents(ctx context.Context, arg ListIncidentsParams) ([]ListIncidentsRow, error)
 }
 
 var _ Querier = (*Queries)(nil)

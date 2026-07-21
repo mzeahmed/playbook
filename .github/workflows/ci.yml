@@ -30,7 +30,7 @@ jobs:
         with:
           # Reads the Go version from go.mod instead of hardcoding one here,
           # so this workflow can never drift out of sync with the module.
-          go-version-file: app/go.mod
+          go-version-file: go.mod
           # No go.sum yet (no external dependencies), so module caching has
           # nothing to key off — re-enable once one exists.
           cache: false
