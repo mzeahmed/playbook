@@ -9,12 +9,12 @@ import (
 )
 
 type Querier interface {
-	CreateSettings(ctx context.Context, arg CreateSettingsParams) (Setting, error)
 	CreateUser(ctx context.Context, arg CreateUserParams) (User, error)
-	DeleteSettings(ctx context.Context) error
+	CreateWizard(ctx context.Context, arg CreateWizardParams) (Wizard, error)
+	DeleteWizard(ctx context.Context) error
 	FindUserByEmail(ctx context.Context, email string) (User, error)
 	FindUserById(ctx context.Context, id int64) (User, error)
-	GetSettings(ctx context.Context) (Setting, error)
+	GetWizard(ctx context.Context) (Wizard, error)
 	HasUser(ctx context.Context) (bool, error)
 }
 

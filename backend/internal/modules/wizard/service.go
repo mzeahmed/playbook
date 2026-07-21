@@ -32,7 +32,7 @@ func NewService(pool *pgxpool.Pool) *Service {
 }
 
 // Status reports whether the setup wizard has already been completed. An
-// administrator account is the source of truth for this: a settings row
+// administrator account is the source of truth for this: a wizard row
 // with no user behind it (e.g. the admin was removed some other way) is
 // treated as not initialized, so Setup can recover it — see Setup.
 func (s *Service) Status(ctx context.Context) (bool, error) {
@@ -44,7 +44,7 @@ func (s *Service) Status(ctx context.Context) (bool, error) {
 // with the initialization state, or nothing is.
 //
 // It fails with ErrAlreadyInitialized if an administrator already exists.
-// If a settings row is present without one (a previously initialized
+// If a wizard row is present without one (a previously initialized
 // instance whose admin was later removed directly in the database), it is
 // replaced rather than blocking setup forever with no way to recover.
 func (s *Service) Setup(ctx context.Context, req SetupRequest) error {
@@ -66,7 +66,7 @@ func (s *Service) Setup(ctx context.Context, req SetupRequest) error {
 		return ErrAlreadyInitialized
 	}
 
-	if err := q.DeleteSettings(ctx); err != nil {
+	if err := q.DeleteWizard(ctx); err != nil {
 		return err
 	}
 
@@ -84,13 +84,13 @@ func (s *Service) Setup(ctx context.Context, req SetupRequest) error {
 		return err
 	}
 
-	if _, err := q.CreateSettings(ctx, repo.CreateSettingsParams{
+	if _, err := q.CreateWizard(ctx, repo.CreateWizardParams{
 		InstanceName: req.Instance.Name,
 		Timezone:     req.Instance.Timezone,
 		Locale:       req.Instance.Locale,
 	}); err != nil {
-		// The settings table enforces a single row via a UNIQUE constraint
-		// on its singleton column, so a unique violation here means a
+		// The wizard table enforces a single row via a UNIQUE constraint on
+		// its singleton column, so a unique violation here means a
 		// concurrent request won the race to initialize the instance first.
 		var pgErr *pgconn.PgError
 		if errors.As(err, &pgErr) && pgErr.Code == uniqueViolation {

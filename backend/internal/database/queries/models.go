@@ -136,22 +136,6 @@ type Link struct {
 	Url string `json:"url"`
 }
 
-// Singleton row holding the instance configuration produced by the first-time setup wizard.
-type Setting struct {
-	// Primary key.
-	ID int64 `json:"id"`
-	// Always true; the UNIQUE constraint on this column is what enforces the table can only ever hold one row.
-	Singleton bool `json:"singleton"`
-	// Display name of this Playbook instance.
-	InstanceName string `json:"instance_name"`
-	// IANA timezone used to display dates across the instance.
-	Timezone string `json:"timezone"`
-	// Default UI locale.
-	Locale string `json:"locale"`
-	// Date the setup wizard completed; the presence of this row means the instance is initialized.
-	InitializedAt pgtype.Timestamptz `json:"initialized_at"`
-}
-
 // Reusable code or command snippets attached to an incident.
 type Snippet struct {
 	// Primary key.
@@ -194,4 +178,20 @@ type User struct {
 	CreatedAt pgtype.Timestamptz `json:"created_at"`
 	// Last update date.
 	UpdatedAt pgtype.Timestamptz `json:"updated_at"`
+}
+
+// Singleton row holding the instance configuration produced by the first-time setup wizard.
+type Wizard struct {
+	// Primary key.
+	ID int64 `json:"id"`
+	// Always true; the UNIQUE constraint on this column is what enforces the table can only ever hold one row.
+	Singleton bool `json:"singleton"`
+	// Display name of this Playbook instance.
+	InstanceName string `json:"instance_name"`
+	// IANA timezone used to display dates across the instance.
+	Timezone string `json:"timezone"`
+	// Default UI locale.
+	Locale string `json:"locale"`
+	// Date the setup wizard completed; the presence of this row means the instance is initialized.
+	InitializedAt pgtype.Timestamptz `json:"initialized_at"`
 }
