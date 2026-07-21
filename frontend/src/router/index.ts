@@ -1,8 +1,10 @@
 import { createBrowserRouter, redirect } from 'react-router-dom'
 
 import { getSetupStatus } from '@/modules/wizard/api'
+import { getToken } from '@/modules/auth/session'
 import SetupView from '@/modules/wizard/views/SetupView'
 import LoginView from '@/modules/auth/views/LoginView'
+import DashboardView from '@/modules/dashboard/views/DashboardView'
 
 // The backend is the single source of truth for initialization state, so
 // every navigation re-checks it instead of trusting anything cached
@@ -28,6 +30,11 @@ async function guard(routeName: 'setup' | 'login') {
     return redirect('/login')
   }
 
+  // Already signed in: /login has nothing left to do.
+  if (routeName === 'login' && getToken()) {
+    return redirect('/dashboard')
+  }
+
   return null
 }
 
@@ -45,6 +52,11 @@ const router = createBrowserRouter([
     path: '/login',
     loader: () => guard('login'),
     Component: LoginView,
+  },
+  {
+    path: '/dashboard',
+    loader: () => (getToken() ? null : redirect('/login')),
+    Component: DashboardView,
   },
 ])
 
