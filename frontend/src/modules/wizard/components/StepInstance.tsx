@@ -1,5 +1,5 @@
-import type { InstanceInput } from '../api'
-import type { InstanceErrors } from './validators'
+import type {InstanceInput} from "@/modules/wizard/api.ts";
+import type {InstanceErrors} from "@/modules/wizard/validators.ts";
 
 const timezones: string[] =
   typeof Intl.supportedValuesOf === 'function' ? Intl.supportedValuesOf('timeZone') : ['UTC']

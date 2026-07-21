@@ -1,11 +1,11 @@
-import { Fragment } from 'react'
+import {Fragment} from 'react'
 
 interface WizardStepperProps {
   steps: string[]
   currentStep: number
 }
 
-export default function WizardStepper({ steps, currentStep }: WizardStepperProps) {
+export default function WizardStepper ({steps, currentStep}: WizardStepperProps) {
   return (
     <div className="pb-stepper mb-4">
       {steps.map((label, index) => (
@@ -17,7 +17,7 @@ export default function WizardStepper({ steps, currentStep }: WizardStepperProps
             title={label}
           >
             {index + 1 < currentStep ? (
-              <i className="fa-solid fa-check" style={{ fontSize: '0.65rem' }}></i>
+              <i className="fa-solid fa-check" style={{fontSize: '0.65rem'}}></i>
             ) : (
               <span>{index + 1}</span>
             )}

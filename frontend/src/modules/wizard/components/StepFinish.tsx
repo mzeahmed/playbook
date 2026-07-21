@@ -1,4 +1,4 @@
-import type { AdminInput, InstanceInput } from '../api'
+import type {AdminInput, InstanceInput} from "@/modules/wizard/api.ts";
 
 interface StepFinishProps {
   admin: AdminInput

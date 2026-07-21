@@ -1,7 +1,7 @@
 import { createBrowserRouter, redirect } from 'react-router-dom'
 
-import { getSetupStatus } from '@/modules/setup/api'
-import SetupView from '@/modules/setup/views/SetupView'
+import { getSetupStatus } from '@/modules/wizard/api'
+import SetupView from '@/modules/wizard/views/SetupView'
 import LoginView from '@/modules/auth/views/LoginView'
 
 // The backend is the single source of truth for initialization state, so

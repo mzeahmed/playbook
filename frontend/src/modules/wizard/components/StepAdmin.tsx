@@ -1,5 +1,5 @@
-import type { AdminInput } from '../api'
-import type { AdminErrors } from './validators'
+import type {AdminInput} from "@/modules/wizard/api.ts";
+import type {AdminErrors} from "@/modules/wizard/validators.ts";
 
 interface StepAdminProps {
   admin: AdminInput

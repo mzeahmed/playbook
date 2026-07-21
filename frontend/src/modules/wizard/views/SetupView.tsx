@@ -3,12 +3,12 @@ import { useNavigate } from 'react-router-dom'
 
 import { ApiError } from '@/http/client'
 import { completeSetup, type AdminInput, type InstanceInput } from '../api'
-import WizardStepper from '../components/WizardStepper'
-import StepWelcome from '../components/StepWelcome'
-import StepAdmin from '../components/StepAdmin'
-import StepInstance from '../components/StepInstance'
-import StepFinish from '../components/StepFinish'
-import { validateAdmin, validateInstance, type AdminErrors, type InstanceErrors } from '../components/validators'
+import {type AdminErrors, type InstanceErrors, validateAdmin, validateInstance} from "@/modules/wizard/validators.ts";
+import WizardStepper from "@/modules/wizard/components/WizardStepper.tsx";
+import StepWelcome from "@/modules/wizard/components/StepWelcome.tsx";
+import StepAdmin from "@/modules/wizard/components/StepAdmin.tsx";
+import StepInstance from "@/modules/wizard/components/StepInstance.tsx";
+import StepFinish from "@/modules/wizard/components/StepFinish.tsx";
 
 const steps = ['Welcome', 'Administrator', 'Instance', 'Finish']
 

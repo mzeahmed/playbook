@@ -7,7 +7,7 @@ export default function StepWelcome() {
 
       <h1 className="h4 fw-bold mb-2">Welcome to Playbook</h1>
       <p className="small mb-0" style={{ color: 'var(--pb-text-muted)' }}>
-        Let&apos;s set up your instance. You&apos;ll create the administrator account and
+        Let's set up your instance. You'll create the administrator account and
         configure a few instance settings — it only takes a minute.
       </p>
     </div>
