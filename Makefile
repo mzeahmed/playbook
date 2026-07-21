@@ -24,6 +24,7 @@ RESET  := \033[0m
         tidy update \
         clean doctor \
         hosts-add hosts-remove up down restart logs ps bash \
+        module \
         migrate-up migrate-down sqlc
 
 help: ## Show available commands
@@ -70,6 +71,17 @@ tidy: ## Clean up go.mod / go.sum
 update: ## Update dependencies
 	cd backend && go get -u ./...
 	cd backend && go mod tidy
+
+# ==============================================================================
+# Modules
+# ==============================================================================
+
+module: ## Scaffold a new backend module | make module m="module_name"
+	@if [ $(m) ]; then \
+		./scripts/create-module.sh ${m}; \
+	else \
+		echo "$(RED)(m) param is required (make module m='module_name') $(RESET)"; \
+	fi
 
 # ==============================================================================
 # Database

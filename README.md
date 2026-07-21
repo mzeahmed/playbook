@@ -259,6 +259,7 @@ Stops the containers and removes `coelbook.local`/`api.coelbook.local` from `/et
 | `make migrate-up` | Apply migrations |
 | `make migrate-down` | Roll back the last migration |
 | `make sqlc` | Regenerate Go code from SQL queries |
+| `make module m="name"` | Scaffold a new backend module and wire it into the router |
 
 The full list of commands is available via:
 
