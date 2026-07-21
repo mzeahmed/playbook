@@ -7,4 +7,4 @@ CREATE TABLE settings
 )
 
 -- +goose Down
-DROP TABLE users;
+DROP TABLE settings;
