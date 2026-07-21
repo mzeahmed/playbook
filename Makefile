@@ -9,7 +9,7 @@ endif
 
 .DEFAULT_GOAL := help
 
-COMPOSE := docker compose -f infra/docker-compose.yml --env-file .env
+COMPOSE := docker compose -f docker-compose.yml --env-file .env
 
 APP_CONTAINER := coelbook_backend
 
@@ -101,10 +101,10 @@ sqlc: ## Regenerate Go code from SQL queries
 # ==============================================================================
 
 hosts-add: ## Add local domains to /etc/hosts (requires sudo)
-	@./infra/scripts/hosts-add.sh
+	@./scripts/hosts-add.sh
 
 hosts-remove: ## Remove local domains from /etc/hosts (requires sudo)
-	@./infra/scripts/hosts-remove.sh
+	@./scripts/hosts-remove.sh
 
 up: hosts-add ## Build and start the containers
 	@if [ ! -f .env ]; then \

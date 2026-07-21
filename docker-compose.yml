@@ -21,13 +21,13 @@ services:
 
   backend:
     build:
-      context: ../backend
-      dockerfile: ../infra/docker/backend/Dockerfile
+      context: backend
+      dockerfile: ../.docker/backend/Dockerfile
     container_name: coelbook_backend
     restart: unless-stopped
     working_dir: /app
     volumes:
-      - ../backend:/app
+      - ./backend:/app
       - /app/tmp
       - go_mod_cache:/go/pkg/mod
       - go_build_cache:/root/.cache/go-build
@@ -54,12 +54,12 @@ services:
 
   frontend:
     build:
-      context: ./docker/frontend
+      context: ./.docker/frontend
     container_name: coelbook_frontend
     restart: unless-stopped
     working_dir: /app
     volumes:
-      - ../frontend:/app
+      - ./frontend:/app
       - /app/node_modules
     ports:
       - "${FRONTEND_PORT:-5173}:5173"
@@ -68,7 +68,7 @@ services:
 
   nginx:
     build:
-      context: ./docker/nginx
+      context: ./.docker/nginx
     container_name: coelbook_nginx
     restart: unless-stopped
     ports:
